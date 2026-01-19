@@ -183,13 +183,14 @@ export default function Portfolio() {
                   }}
                 ></div>
               </div>
-              <User className="w-48 h-48 text-cyan-400 relative z-10" />
-              <div className="absolute top-4 right-4 px-3 py-1 bg-gray-950/90 backdrop-blur-sm rounded border border-cyan-400/50 font-mono text-xs text-cyan-400">
+              {/* <User className="w-48 h-48 text-cyan-400 relative z-10" /> */}
+              <img src="src/assets/personal_photo.png" alt="" />
+              {/* <div className="absolute top-4 right-4 px-3 py-1 bg-gray-950/90 backdrop-blur-sm rounded border border-cyan-400/50 font-mono text-xs text-cyan-400">
                 img_placeholder.jpg
-              </div>
-              <div className="absolute bottom-4 left-4 px-3 py-1 bg-gray-950/90 backdrop-blur-sm rounded border border-cyan-400/50 font-mono text-xs text-cyan-400">
+              </div> */}
+              {/* <div className="absolute bottom-4 left-4 px-3 py-1 bg-gray-950/90 backdrop-blur-sm rounded border border-cyan-400/50 font-mono text-xs text-cyan-400">
                 400x400px
-              </div>
+              </div> */}
             </div>
             {/* Decorative elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-blue-400 rounded-lg"></div>
