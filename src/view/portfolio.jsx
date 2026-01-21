@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Github,
   Linkedin,
   Mail,
   Code2,
-  Briefcase,
-  User,
   ChevronDown,
   ExternalLink,
   Terminal,
@@ -108,7 +106,7 @@ export default function Portfolio() {
                   )}
                   .{section}()
                 </button>
-              )
+              ),
             )}
           </div>
         </div>
