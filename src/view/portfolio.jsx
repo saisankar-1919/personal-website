@@ -9,11 +9,14 @@ import {
   Terminal,
   Cpu,
   Zap,
+  Menu,
+  X,
 } from "lucide-react";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,17 +62,18 @@ export default function Portfolio() {
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setActiveSection(id);
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       {/* Animated background grid */}
-      <div className="fixed inset-0 opacity-20">
+      <div className="fixed inset-0 opacity-20 pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: `linear-gradient(#0ff 1px, transparent 1px), linear-gradient(90deg, #0ff 1px, transparent 1px)`,
-            backgroundSize: "50px 50px",
+            backgroundSize: "40px 40px",
           }}
         ></div>
       </div>
@@ -82,22 +86,24 @@ export default function Portfolio() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center relative">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-sm flex items-center justify-center">
-              <Terminal className="w-5 h-5 text-gray-950" />
+            <div className="w-6 sm:w-8 h-6 sm:h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-sm flex items-center justify-center flex-shrink-0">
+              <Terminal className="w-4 sm:w-5 h-4 sm:h-5 text-gray-950" />
             </div>
-            <span className="text-xl font-bold font-mono text-cyan-400">
-              {"<Sai Sankar />"}
+            <span className="text-sm sm:text-xl font-bold font-mono text-cyan-400 truncate">
+              {"<Sai />"}
             </span>
           </div>
-          <div className="flex gap-6 font-mono text-sm">
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-4 lg:gap-6 font-mono text-xs lg:text-sm">
             {["home", "about", "skills", "projects", "contact"].map(
               (section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`capitalize hover:text-cyan-400 transition-colors relative ${
+                  className={`capitalize hover:text-cyan-400 transition-colors relative whitespace-nowrap ${
                     activeSection === section ? "text-cyan-400" : ""
                   }`}
                 >
@@ -109,67 +115,102 @@ export default function Portfolio() {
               ),
             )}
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 hover:text-cyan-400 transition-colors flex-shrink-0"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-gray-950/95 backdrop-blur-sm border-t border-cyan-400/20">
+            <div className="px-4 py-4 space-y-3 max-w-6xl mx-auto">
+              {["home", "about", "skills", "projects", "contact"].map(
+                (section) => (
+                  <button
+                    key={section}
+                    onClick={() => scrollToSection(section)}
+                    className={`block w-full text-left px-4 py-2 rounded font-mono text-sm capitalize transition-colors ${
+                      activeSection === section
+                        ? "bg-cyan-400/20 text-cyan-400"
+                        : "text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-400"
+                    }`}
+                  >
+                    .{section}()
+                  </button>
+                ),
+              )}
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
       <section
         id="home"
-        className="min-h-screen flex items-center justify-center px-6 pt-20 relative"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 md:pt-24 pb-10 relative"
       >
-        <div className="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
-          <div className="space-y-6">
+        <div className="max-w-6xl w-full grid md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
+          <div className="space-y-4 md:space-y-6">
             <div className="inline-block">
-              <span className="px-4 py-2 bg-cyan-500/10 border-2 border-cyan-400 rounded text-sm text-cyan-400 font-mono">
+              <span className="px-3 sm:px-4 py-2 bg-cyan-500/10 border-2 border-cyan-400 rounded text-xs sm:text-sm text-cyan-400 font-mono">
                 $ whoami: senior_dev
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight font-mono">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight font-mono">
               <span className="text-cyan-400">{">"}</span> Building
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400">
                 Intelligent Web
               </span>
               <span className="block">Applications_</span>
             </h1>
-            <p className="text-xl text-gray-300 font-light">
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 font-light leading-relaxed">
               4+ years architecting scalable solutions with React, Node.js, and
               AI-driven technologies. Transforming complex problems into elegant
               code at an AI product development company.
             </p>
-            <div className="flex gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <button
                 onClick={() => scrollToSection("projects")}
-                className="px-8 py-3 bg-cyan-400 text-gray-950 rounded font-semibold font-mono hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/50 transition-all"
+                className="px-6 sm:px-8 py-2 sm:py-3 bg-cyan-400 text-gray-950 rounded font-semibold font-mono text-sm sm:text-base hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/50 transition-all active:scale-95"
               >
                 view_projects()
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="px-8 py-3 border-2 border-cyan-400 text-cyan-400 rounded font-semibold font-mono hover:bg-cyan-400/10 transition-all"
+                className="px-6 sm:px-8 py-2 sm:py-3 border-2 border-cyan-400 text-cyan-400 rounded font-semibold font-mono text-sm sm:text-base hover:bg-cyan-400/10 transition-all active:scale-95"
               >
                 get_in_touch()
               </button>
             </div>
-            <div className="flex gap-4 pt-4">
+            <div className="flex gap-3 pt-4">
               <a
                 href="https://github.com/saisankar-1919"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 border-2 border-gray-800 rounded hover:border-cyan-400 hover:text-cyan-400 transition-colors"
+                className="p-2 sm:p-3 border-2 border-gray-800 rounded hover:border-cyan-400 hover:text-cyan-400 transition-colors active:scale-95"
               >
-                <Github className="w-6 h-6" />
+                <Github className="w-5 sm:w-6 h-5 sm:h-6" />
               </a>
               <a
                 href="https://www.linkedin.com/in/saisankar-s-r-896a39150/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 border-2 border-gray-800 rounded hover:border-cyan-400 hover:text-cyan-400 transition-colors"
+                className="p-2 sm:p-3 border-2 border-gray-800 rounded hover:border-cyan-400 hover:text-cyan-400 transition-colors active:scale-95"
               >
-                <Linkedin className="w-6 h-6" />
+                <Linkedin className="w-5 sm:w-6 h-5 sm:h-6" />
               </a>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative hidden md:block">
             <div className="absolute inset-0 bg-cyan-400/20 rounded-lg blur-3xl"></div>
             <div className="relative w-full aspect-square rounded-lg bg-gradient-to-br from-gray-900 to-gray-800 border-2 border-cyan-400 flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 opacity-10">
@@ -181,14 +222,11 @@ export default function Portfolio() {
                   }}
                 ></div>
               </div>
-              {/* <User className="w-48 h-48 text-cyan-400 relative z-10" /> */}
-              <img src="src/assets/personal_photo.png" alt="" />
-              {/* <div className="absolute top-4 right-4 px-3 py-1 bg-gray-950/90 backdrop-blur-sm rounded border border-cyan-400/50 font-mono text-xs text-cyan-400">
-                img_placeholder.jpg
-              </div> */}
-              {/* <div className="absolute bottom-4 left-4 px-3 py-1 bg-gray-950/90 backdrop-blur-sm rounded border border-cyan-400/50 font-mono text-xs text-cyan-400">
-                400x400px
-              </div> */}
+              <img
+                src="src/assets/personal_photo.png"
+                alt="Sai Sankar"
+                className="w-full h-full object-cover"
+              />
             </div>
             {/* Decorative elements */}
             <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-blue-400 rounded-lg"></div>
@@ -206,36 +244,36 @@ export default function Portfolio() {
       {/* About Section */}
       <section
         id="about"
-        className="min-h-screen flex items-center justify-center px-6 py-20 relative"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-4xl w-full relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 font-mono">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 font-mono">
             <span className="text-cyan-400">{"<"}</span>
             About
             <span className="text-cyan-400">{" />"}</span>
           </h2>
-          <div className="bg-gray-900 rounded-lg p-8 border-2 border-cyan-400/20 relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-8 bg-gray-800 border-b-2 border-cyan-400/20 flex items-center px-4 gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              <span className="ml-4 text-xs text-gray-400 font-mono">
+          <div className="bg-gray-900 rounded-lg p-4 sm:p-6 md:p-8 border-2 border-cyan-400/20 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-6 sm:h-8 bg-gray-800 border-b-2 border-cyan-400/20 flex items-center px-3 sm:px-4 gap-2">
+              <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-red-500"></div>
+              <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-green-500"></div>
+              <span className="ml-2 sm:ml-4 text-xs text-gray-400 font-mono truncate">
                 about_me.md
               </span>
             </div>
-            <div className="mt-8 space-y-4 font-light text-gray-300">
+            <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4 font-light text-gray-300 text-sm sm:text-base">
               <p className="leading-relaxed">
                 <span className="text-cyan-400 font-mono">const</span> developer
                 = <span className="text-blue-400">{"{"}</span>
               </p>
-              <p className="pl-8 leading-relaxed">
+              <p className="pl-4 sm:pl-8 leading-relaxed">
                 As a Senior Full Stack Developer with over 4 years of
                 experience, I specialize in building robust, scalable web
                 applications that solve real-world problems. My expertise spans
                 the entire development lifecycle, from architecting solutions to
                 deploying production-ready applications.
               </p>
-              <p className="pl-8 leading-relaxed">
+              <p className="pl-4 sm:pl-8 leading-relaxed">
                 Currently, I'm working at an AI product development company
                 where I blend traditional web technologies with cutting-edge AI
                 capabilities to create innovative solutions. My focus is on
@@ -243,7 +281,7 @@ export default function Portfolio() {
                 exceptional user experiences while maintaining clean,
                 maintainable code.
               </p>
-              <p className="pl-8 leading-relaxed">
+              <p className="pl-4 sm:pl-8 leading-relaxed">
                 I'm passionate about staying at the forefront of web
                 development, constantly exploring new technologies and best
                 practices. Whether it's optimizing performance, implementing
@@ -261,20 +299,22 @@ export default function Portfolio() {
       {/* Skills Section */}
       <section
         id="skills"
-        className="min-h-screen flex items-center justify-center px-6 py-20 relative"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-4xl w-full relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 font-mono">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 font-mono">
             <span className="text-cyan-400">{"<"}</span>
             Skills
             <span className="text-cyan-400">{" />"}</span>
           </h2>
-          <div className="grid gap-6">
+          <div className="grid gap-4 md:gap-6 mb-8 md:mb-12">
             {skills.map((skill, index) => (
               <div key={index} className="space-y-2">
-                <div className="flex justify-between items-center font-mono">
-                  <span className="text-lg">{skill.name}</span>
-                  <span className="text-cyan-400">[{skill.level}%]</span>
+                <div className="flex justify-between items-center font-mono text-sm md:text-base gap-2">
+                  <span className="flex-1 min-w-0">{skill.name}</span>
+                  <span className="text-cyan-400 flex-shrink-0">
+                    [{skill.level}%]
+                  </span>
                 </div>
                 <div className="h-2 bg-gray-800 rounded-sm overflow-hidden border border-gray-700">
                   <div
@@ -285,31 +325,33 @@ export default function Portfolio() {
               </div>
             ))}
           </div>
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            <div className="p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
-              <Code2 className="w-12 h-12 mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-2 font-mono text-cyan-400">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
+              <Code2 className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-cyan-400">
                 Frontend
               </h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-xs md:text-sm">
                 React, Next.js, TypeScript, Tailwind CSS
               </p>
             </div>
-            <div className="p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
-              <Cpu className="w-12 h-12 mb-4 text-blue-400 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-2 font-mono text-blue-400">
+            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
+              <Cpu className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-blue-400 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-blue-400">
                 Backend
               </h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-xs md:text-sm">
                 Node.js, Express, RESTful APIs, GraphQL
               </p>
             </div>
-            <div className="p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
-              <Zap className="w-12 h-12 mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <h3 className="text-xl font-bold mb-2 font-mono text-cyan-400">
+            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group sm:col-span-2 lg:col-span-1">
+              <Zap className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-cyan-400">
                 DevOps
               </h3>
-              <p className="text-gray-400 text-sm">Docker, CI/CD, AWS, Git</p>
+              <p className="text-gray-400 text-xs md:text-sm">
+                Docker, CI/CD, AWS, Git
+              </p>
             </div>
           </div>
         </div>
@@ -318,33 +360,33 @@ export default function Portfolio() {
       {/* Projects Section */}
       <section
         id="projects"
-        className="min-h-screen flex items-center justify-center px-6 py-20 relative"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-6xl w-full relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 font-mono">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 font-mono">
             <span className="text-cyan-400">{"<"}</span>
             Projects
             <span className="text-cyan-400">{" />"}</span>
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="bg-gray-900 rounded-lg p-6 border-2 border-cyan-400/20 hover:border-cyan-400 transition-all group relative overflow-hidden"
+                className="bg-gray-900 rounded-lg p-4 md:p-6 border-2 border-cyan-400/20 hover:border-cyan-400 transition-all group relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-20 h-20 bg-cyan-400/10 rounded-bl-full group-hover:scale-150 transition-transform"></div>
                 <div className="absolute -top-2 -right-2 w-4 h-4 border-2 border-cyan-400 rounded-sm"></div>
-                <h3 className="text-2xl font-bold mb-3 font-mono text-cyan-400 relative z-10">
+                <h3 className="text-lg md:text-2xl font-bold mb-2 md:mb-3 font-mono text-cyan-400 relative z-10 line-clamp-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 mb-4 leading-relaxed text-sm relative z-10">
+                <p className="text-gray-400 mb-3 md:mb-4 leading-relaxed text-xs sm:text-sm relative z-10">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+                <div className="flex flex-wrap gap-2 mb-3 md:mb-4 relative z-10">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-2 py-1 bg-cyan-400/10 border border-cyan-400/30 rounded text-xs text-cyan-400 font-mono"
+                      className="px-2 py-1 bg-cyan-400/10 border border-cyan-400/30 rounded text-xs text-cyan-400 font-mono whitespace-nowrap"
                     >
                       {tech}
                     </span>
@@ -352,77 +394,74 @@ export default function Portfolio() {
                 </div>
                 <a
                   href={project.link}
-                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-blue-400 transition-colors font-mono text-sm relative z-10"
+                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-blue-400 transition-colors font-mono text-xs sm:text-sm relative z-10"
                 >
-                  view_code() <ExternalLink className="w-4 h-4" />
+                  view_code() <ExternalLink className="w-3 sm:w-4 h-3 sm:h-4" />
                 </a>
               </div>
             ))}
           </div>
-          {/* <p className="text-center text-gray-500 mt-12 font-mono text-sm">
-            // TODO: Replace with actual project data
-          </p> */}
         </div>
       </section>
 
       {/* Contact Section */}
       <section
         id="contact"
-        className="min-h-screen flex items-center justify-center px-6 py-20 relative"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-4xl w-full text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 font-mono">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 font-mono">
             <span className="text-cyan-400">{"<"}</span>
             Contact
             <span className="text-cyan-400">{" />"}</span>
           </h2>
-          <p className="text-xl text-gray-300 mb-12 font-light">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 md:mb-12 font-light px-2">
             Whether you're looking for a skilled developer for your next project
             or want to discuss opportunities, I'm always open to connecting with
             fellow professionals and potential collaborators.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center mb-8 md:mb-12">
             <a
               href="mailto:your.email@example.com"
-              className="px-8 py-4 bg-cyan-400 text-gray-950 rounded font-semibold font-mono hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/50 transition-all flex items-center gap-2"
+              className="px-6 sm:px-8 py-3 md:py-4 bg-cyan-400 text-gray-950 rounded font-semibold font-mono text-sm md:text-base hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/50 transition-all flex items-center justify-center gap-2 active:scale-95"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-4 md:w-5 h-4 md:h-5" />
               send_email()
             </a>
             <a
               href="https://www.linkedin.com/in/saisankar-s-r-896a39150/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded font-semibold font-mono hover:bg-cyan-400/10 transition-all flex items-center gap-2"
+              className="px-6 sm:px-8 py-3 md:py-4 border-2 border-cyan-400 text-cyan-400 rounded font-semibold font-mono text-sm md:text-base hover:bg-cyan-400/10 transition-all flex items-center justify-center gap-2 active:scale-95"
             >
-              <Linkedin className="w-5 h-5" />
+              <Linkedin className="w-4 md:w-5 h-4 md:h-5" />
               connect()
             </a>
           </div>
-          <div className="mt-12 flex justify-center gap-6">
+          <div className="flex justify-center gap-4 sm:gap-6">
             <a
               href="https://github.com/saisankar-1919"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 border-2 border-gray-800 rounded hover:border-cyan-400 hover:text-cyan-400 transition-colors"
+              className="p-3 md:p-4 border-2 border-gray-800 rounded hover:border-cyan-400 hover:text-cyan-400 transition-colors active:scale-95"
             >
-              <Github className="w-8 h-8" />
+              <Github className="w-6 md:w-8 h-6 md:h-8" />
             </a>
             <a
               href="https://www.linkedin.com/in/saisankar-s-r-896a39150/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 border-2 border-gray-800 rounded hover:border-cyan-400 hover:text-cyan-400 transition-colors"
+              className="p-3 md:p-4 border-2 border-gray-800 rounded hover:border-cyan-400 hover:text-cyan-400 transition-colors active:scale-95"
             >
-              <Linkedin className="w-8 h-8" />
+              <Linkedin className="w-6 md:w-8 h-6 md:h-8" />
             </a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t-2 border-cyan-400/20 py-8 text-center text-gray-400 relative z-10">
-        <p className="font-mono text-sm">
+      <footer className="border-t-2 border-cyan-400/20 py-6 md:py-8 text-center text-gray-400 relative z-10 px-4">
+        <p className="font-mono text-xs sm:text-sm">
           <span className="text-cyan-400">{"</>"}</span> Built with React &
           TypeScript © 2026 Sai Sankar
         </p>
