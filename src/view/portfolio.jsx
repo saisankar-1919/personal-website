@@ -38,25 +38,25 @@ export default function Portfolio() {
 
   const projects = [
     {
-      title: "AI-Powered Analytics Dashboard",
+      title: "Trendrocket.io",
       description:
-        "A real-time analytics platform built with React and Node.js, featuring intelligent data visualization and predictive insights.",
-      tech: ["React", "Node.js", "TypeScript", "PostgreSQL"],
-      link: "#",
+        "An e-commerce intelligence and trend research platform that helps entrepreneurs, online sellers, and brands find trending products, fast-growing stores, and competitor insights to fuel their business growth",
+      tech: ["React", "GraphQL", "TypeScript", "Material UI"],
+      link: "https://trendrocket.io",
     },
     {
-      title: "E-Commerce Microservices Platform",
+      title: "Career super hero",
       description:
-        "Scalable microservices architecture handling 100K+ daily transactions with Next.js frontend and Node.js backend.",
-      tech: ["Next.js", "Node.js", "Redis", "Docker"],
-      link: "#",
+        "A structured career guidance experience that blends assessments, activities, and mentoring to help students understand their interests and potential with a gamified interface.",
+      tech: ["Next.js", "Node.js", "GraphQL", "PostgreSQL"],
+      link: "https://www.lifology.com/products/career-superhero/",
     },
     {
       title: "Real-Time Collaboration Tool",
       description:
         "WebSocket-based collaborative workspace enabling teams to work together seamlessly with live updates.",
       tech: ["React", "Socket.io", "Express", "MongoDB"],
-      link: "#",
+      link: "",
     },
   ];
 
@@ -393,12 +393,16 @@ export default function Portfolio() {
                     </span>
                   ))}
                 </div>
-                <a
-                  href={project.link}
-                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-blue-400 transition-colors font-mono text-xs sm:text-sm relative z-10"
-                >
-                  view_code() <ExternalLink className="w-3 sm:w-4 h-3 sm:h-4" />
-                </a>
+                {project.link !== "" && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    className="inline-flex items-center gap-2 text-cyan-400 hover:text-blue-400 transition-colors font-mono text-xs sm:text-sm relative z-10"
+                  >
+                    view_platform(){" "}
+                    <ExternalLink className="w-3 sm:w-4 h-3 sm:h-4" />
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -464,7 +468,7 @@ export default function Portfolio() {
       <footer className="border-t-2 border-cyan-400/20 py-6 md:py-8 text-center text-gray-400 relative z-10 px-4">
         <p className="font-mono text-xs sm:text-sm">
           <span className="text-cyan-400">{"</>"}</span> Built with React &
-          TypeScript © 2026 Sai Sankar
+          TypeScript © Sai Sankar
         </p>
       </footer>
     </div>
