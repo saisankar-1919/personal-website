@@ -317,7 +317,7 @@ export default function Portfolio() {
         id="about"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
-        <div className="max-w-4xl w-full relative z-10">
+        <div className="max-w-6xl w-full relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 font-mono">
             <span className="text-cyan-400">{"<"}</span>
             About
@@ -372,7 +372,7 @@ export default function Portfolio() {
         id="skills"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
-        <div className="max-w-4xl w-full relative z-10">
+        <div className="max-w-6xl w-full relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 font-mono">
             <span className="text-cyan-400">{"<"}</span>
             Skills
@@ -385,29 +385,57 @@ export default function Portfolio() {
               {skills.map((skill) => (
                 <li
                   key={skill.name}
-                  className="grid grid-cols-[180px_140px_1fr] gap-4 items-center"
+                  className="
+    grid
+    grid-cols-1
+    sm:grid-cols-[300px_100px_minmax(0,1fr)]
+    gap-4
+    items-start
+  "
                 >
                   {/* Skill name */}
-                  <span className="text-gray-300 truncate">▸ {skill.name}</span>
+                  <span
+                    className="
+      text-gray-300
+      text-sm
+      leading-snug
+      break-words
+      pl-2
+      -ml-2
+    "
+                  >
+                    ▸ {skill.name}
+                  </span>
 
-                  {/* Segmented bar */}
-                  <div className="flex gap-[3px] justify-center">
+                  {/* Segmented bars */}
+                  <div className="flex gap-[3px] justify-start sm:justify-center mt-1">
                     {Array.from({ length: TOTAL_BARS }).map((_, index) => {
                       const filled =
                         index < Math.round(skill.level / (100 / TOTAL_BARS));
                       return (
                         <span
                           key={index}
-                          className={`h-2 w-2 rounded-sm ${
-                            filled ? "bg-cyan-400" : "bg-gray-700"
-                          }`}
+                          className={`
+            h-2 w-2 rounded-sm
+            transition-all
+            ${filled ? "bg-cyan-400 shadow-[0_0_6px_#22d3ee]" : "bg-gray-700"}
+          `}
+                          title={`${skill.level}%`}
                         />
                       );
                     })}
                   </div>
 
                   {/* Evidence */}
-                  <span className="text-gray-400 text-xs truncate">
+                  <span
+                    className="
+      text-gray-400
+      text-xs
+      leading-relaxed
+      break-words
+      max-w-2xl
+    "
+                  >
                     {skill.evidence}
                   </span>
                 </li>
@@ -503,7 +531,7 @@ export default function Portfolio() {
         id="contact"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
-        <div className="max-w-4xl w-full text-center relative z-10">
+        <div className="max-w-6xl w-full text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 font-mono">
             <span className="text-cyan-400">{"<"}</span>
             Contact
