@@ -28,12 +28,80 @@ export default function Portfolio() {
   }, []);
 
   const skills = [
-    { name: "React", level: 95 },
-    { name: "Node.js", level: 90 },
-    { name: "Next.js", level: 88 },
-    { name: "TypeScript", level: 92 },
-    { name: "Full Stack Development", level: 90 },
-    { name: "Web Applications", level: 93 },
+    {
+      name: "JavaScript (ES6+)",
+      level: 95,
+      evidence:
+        "Handled async flows, closures, and complex UI logic in production features",
+    },
+    {
+      name: "TypeScript",
+      level: 94,
+      evidence:
+        "Migrated JS codebases to strict TS, reduced runtime bugs significantly",
+    },
+
+    {
+      name: "React.js",
+      level: 93,
+      evidence: "Built and shipped large-scale SPAs used daily by real users",
+    },
+    {
+      name: "Next.js",
+      level: 90,
+      evidence: "Implemented SSR/SSG pages improving load time and SEO metrics",
+    },
+
+    {
+      name: "Node.js",
+      level: 90,
+      evidence:
+        "Developed backend services handling auth, data flow, and integrations",
+    },
+    {
+      name: "REST API Design",
+      level: 92,
+      evidence:
+        "Designed versioned APIs with validation, pagination, and clear error models",
+    },
+
+    {
+      name: "State Management (Redux / Context)",
+      level: 88,
+      evidence:
+        "Refactored messy state into predictable flows, reducing UI bugs",
+    },
+    {
+      name: "Performance Optimization",
+      level: 87,
+      evidence:
+        "Improved page responsiveness by fixing re-renders and heavy components",
+    },
+
+    {
+      name: "Component Architecture & Reusability",
+      level: 90,
+      evidence:
+        "Created reusable component systems adopted across multiple features",
+    },
+    {
+      name: "Clean Code & Best Practices",
+      level: 92,
+      evidence:
+        "Enforced readable patterns, reviews, and refactors in team codebases",
+    },
+
+    {
+      name: "Git & Version Control",
+      level: 90,
+      evidence: "Managed feature branches, PR reviews, and production hotfixes",
+    },
+    {
+      name: "Debugging & Problem Solving",
+      level: 94,
+      evidence:
+        "Resolved production issues by tracing logs, state, and edge cases",
+    },
   ];
 
   const projects = [
@@ -59,6 +127,8 @@ export default function Portfolio() {
       link: "",
     },
   ];
+
+  const TOTAL_BARS = 5;
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -308,24 +378,43 @@ export default function Portfolio() {
             Skills
             <span className="text-cyan-400">{" />"}</span>
           </h2>
-          <div className="grid gap-4 md:gap-6 mb-8 md:mb-12">
-            {skills.map((skill, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex justify-between items-center font-mono text-sm md:text-base gap-2">
-                  <span className="flex-1 min-w-0">{skill.name}</span>
-                  <span className="text-cyan-400 flex-shrink-0">
-                    [{skill.level}%]
+          <div className="bg-black border border-gray-700 rounded-lg p-4 font-mono text-sm mb-12">
+            <p className="text-green-400">$ skills --summary</p>
+
+            <ul className="mt-4 space-y-2">
+              {skills.map((skill) => (
+                <li
+                  key={skill.name}
+                  className="grid grid-cols-[180px_140px_1fr] gap-4 items-center"
+                >
+                  {/* Skill name */}
+                  <span className="text-gray-300 truncate">▸ {skill.name}</span>
+
+                  {/* Segmented bar */}
+                  <div className="flex gap-[3px] justify-center">
+                    {Array.from({ length: TOTAL_BARS }).map((_, index) => {
+                      const filled =
+                        index < Math.round(skill.level / (100 / TOTAL_BARS));
+                      return (
+                        <span
+                          key={index}
+                          className={`h-2 w-2 rounded-sm ${
+                            filled ? "bg-cyan-400" : "bg-gray-700"
+                          }`}
+                        />
+                      );
+                    })}
+                  </div>
+
+                  {/* Evidence */}
+                  <span className="text-gray-400 text-xs truncate">
+                    {skill.evidence}
                   </span>
-                </div>
-                <div className="h-2 bg-gray-800 rounded-sm overflow-hidden border border-gray-700">
-                  <div
-                    className="h-full bg-gradient-to-r from-cyan-400 to-blue-400 transition-all duration-1000 ease-out"
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
-                </div>
-              </div>
-            ))}
+                </li>
+              ))}
+            </ul>
           </div>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
               <Code2 className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
