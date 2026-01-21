@@ -12,6 +12,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import personalPhoto from "../assets/personal_photo.png";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
@@ -223,7 +224,7 @@ export default function Portfolio() {
                 ></div>
               </div>
               <img
-                src="src/assets/personal_photo.png"
+                src={personalPhoto}
                 alt="Sai Sankar"
                 className="w-full h-full object-cover"
               />
