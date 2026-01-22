@@ -140,7 +140,7 @@ export default function Portfolio() {
       dna: [
         { label: "UX Design", value: 85 },
         { label: "Frontend", value: 75 },
-        { label: "Backend", value: 65 },
+        { label: "Backend", value: 80 },
         { label: "Gamification", value: 80 },
       ],
       impact: [
@@ -232,22 +232,26 @@ export default function Portfolio() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-4 lg:gap-6 font-mono text-xs lg:text-sm">
-            {["home", "about", "skills", "projects", "contact"].map(
-              (section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className={`capitalize hover:text-cyan-400 transition-colors relative whitespace-nowrap ${
-                    activeSection === section ? "text-cyan-400" : ""
-                  }`}
-                >
-                  {activeSection === section && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-cyan-400"></span>
-                  )}
-                  .{section}()
-                </button>
-              ),
-            )}
+            {[
+              "home",
+              "about",
+              "skills",
+              "highlighted builds",
+              "get in touch",
+            ].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className={`capitalize hover:text-cyan-400 transition-colors relative whitespace-nowrap ${
+                  activeSection === section ? "text-cyan-400" : ""
+                }`}
+              >
+                {activeSection === section && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-cyan-400"></span>
+                )}
+                .{section}()
+              </button>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -267,21 +271,25 @@ export default function Portfolio() {
         {isMobileMenuOpen && (
           <div className="md:hidden bg-gray-950/95 backdrop-blur-sm border-t border-cyan-400/20">
             <div className="px-4 py-4 space-y-3 max-w-6xl mx-auto">
-              {["home", "about", "skills", "projects", "contact"].map(
-                (section) => (
-                  <button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className={`block w-full text-left px-4 py-2 rounded font-mono text-sm capitalize transition-colors ${
-                      activeSection === section
-                        ? "bg-cyan-400/20 text-cyan-400"
-                        : "text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-400"
-                    }`}
-                  >
-                    .{section}()
-                  </button>
-                ),
-              )}
+              {[
+                "home",
+                "about",
+                "skills",
+                "highlighted builds",
+                "get in touch",
+              ].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`block w-full text-left px-4 py-2 rounded font-mono text-sm capitalize transition-colors ${
+                    activeSection === section
+                      ? "bg-cyan-400/20 text-cyan-400"
+                      : "text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-400"
+                  }`}
+                >
+                  .{section}()
+                </button>
+              ))}
             </div>
           </div>
         )}
@@ -313,13 +321,13 @@ export default function Portfolio() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <button
-                onClick={() => scrollToSection("projects")}
+                onClick={() => scrollToSection("highlighted builds")}
                 className="px-6 sm:px-8 py-2 sm:py-3 bg-cyan-400 text-gray-950 rounded font-semibold font-mono text-sm sm:text-base hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/50 transition-all active:scale-95"
               >
                 view_projects()
               </button>
               <button
-                onClick={() => scrollToSection("contact")}
+                onClick={() => scrollToSection("get in touch")}
                 className="px-6 sm:px-8 py-2 sm:py-3 border-2 border-cyan-400 text-cyan-400 rounded font-semibold font-mono text-sm sm:text-base hover:bg-cyan-400/10 transition-all active:scale-95"
               >
                 get_in_touch()
@@ -574,13 +582,13 @@ export default function Portfolio() {
 
       {/* Projects Section */}
       <section
-        id="projects"
+        id="highlighted builds"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-6xl w-full relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 font-mono">
             <span className="text-cyan-400">{"<"}</span>
-            Projects
+            Highlighted Builds
             <span className="text-cyan-400">{" />"}</span>
           </h2>
 
@@ -673,13 +681,13 @@ export default function Portfolio() {
 
       {/* Contact Section */}
       <section
-        id="contact"
+        id="get in touch"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-6xl w-full text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 font-mono">
             <span className="text-cyan-400">{"<"}</span>
-            Contact
+            Get in Touch
             <span className="text-cyan-400">{" />"}</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 md:mb-12 font-light px-2">
