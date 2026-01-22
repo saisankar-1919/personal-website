@@ -36,7 +36,7 @@ export default function Portfolio() {
     },
     {
       name: "TypeScript",
-      level: 94,
+      level: 89,
       evidence:
         "Migrated JS codebases to strict TS, reduced runtime bugs significantly",
     },
@@ -54,30 +54,40 @@ export default function Portfolio() {
 
     {
       name: "Node.js",
-      level: 90,
+      level: 85,
+      evidence:
+        "Developed backend services handling auth, data flow, and integrations",
+    },
+    {
+      name: "Express.js",
+      level: 87,
+      evidence:
+        "Developed backend services handling auth, data flow, and integrations",
+    },
+    {
+      name: "Python",
+      level: 55,
       evidence:
         "Developed backend services handling auth, data flow, and integrations",
     },
     {
       name: "REST API Design",
-      level: 92,
+      level: 89,
       evidence:
         "Designed versioned APIs with validation, pagination, and clear error models",
     },
-
     {
       name: "State Management (Redux / Context)",
-      level: 88,
+      level: 92,
       evidence:
         "Refactored messy state into predictable flows, reducing UI bugs",
     },
     {
       name: "Performance Optimization",
-      level: 87,
+      level: 93,
       evidence:
         "Improved page responsiveness by fixing re-renders and heavy components",
     },
-
     {
       name: "Component Architecture & Reusability",
       level: 90,
@@ -90,7 +100,6 @@ export default function Portfolio() {
       evidence:
         "Enforced readable patterns, reviews, and refactors in team codebases",
     },
-
     {
       name: "Git & Version Control",
       level: 90,
@@ -111,13 +120,33 @@ export default function Portfolio() {
         "An e-commerce intelligence and trend research platform that helps entrepreneurs, online sellers, and brands find trending products, fast-growing stores, and competitor insights to fuel their business growth",
       tech: ["React", "GraphQL", "TypeScript", "Material UI"],
       link: "https://trendrocket.io",
+      dna: [
+        { label: "Frontend", value: 80 },
+        { label: "Data Handling", value: 75 },
+        { label: "Performance", value: 70 },
+        { label: "Architecture", value: 65 },
+      ],
+      impact: [
+        "Enabled faster product discovery for sellers",
+        "Improved data visibility for market research",
+      ],
     },
     {
-      title: "Career super hero",
+      title: "Career Super Hero",
       description:
         "A structured career guidance experience that blends assessments, activities, and mentoring to help students understand their interests and potential with a gamified interface.",
       tech: ["Next.js", "Node.js", "GraphQL", "PostgreSQL"],
       link: "https://www.lifology.com/products/career-superhero/",
+      dna: [
+        { label: "UX Design", value: 85 },
+        { label: "Frontend", value: 75 },
+        { label: "Backend", value: 65 },
+        { label: "Gamification", value: 80 },
+      ],
+      impact: [
+        "Created an engaging, gamified learning experience",
+        "Improved student engagement and completion rates",
+      ],
     },
     {
       title: "Real-Time Collaboration Tool",
@@ -125,6 +154,40 @@ export default function Portfolio() {
         "WebSocket-based collaborative workspace enabling teams to work together seamlessly with live updates.",
       tech: ["React", "Socket.io", "Express", "MongoDB"],
       link: "",
+      dna: [
+        { label: "Real-Time Systems", value: 85 },
+        { label: "Backend", value: 75 },
+        { label: "Scalability", value: 70 },
+        { label: "State Sync", value: 80 },
+      ],
+      impact: [
+        "Achieved low-latency real-time updates",
+        "Improved team collaboration efficiency",
+      ],
+    },
+  ];
+
+  const capabilities = [
+    {
+      title: "Frontend",
+      level: 95,
+      icon: Code2,
+      color: "cyan",
+      stack: "React, Next.js, TypeScript, Tailwind CSS",
+    },
+    {
+      title: "Backend",
+      level: 85,
+      icon: Cpu,
+      color: "blue",
+      stack: "Node.js, Express, REST APIs, GraphQL",
+    },
+    {
+      title: "DevOps",
+      level: 65,
+      icon: Zap,
+      color: "cyan",
+      stack: "Docker, CI/CD, AWS, Git",
     },
   ];
 
@@ -379,62 +442,70 @@ export default function Portfolio() {
             <span className="text-cyan-400">{" />"}</span>
           </h2>
           <div className="bg-black border border-gray-700 rounded-lg p-4 font-mono text-sm mb-12">
-            <p className="text-green-400">$ skills --summary</p>
+            {/* <p className="text-green-400">$ skills --summary</p> */}
 
             <ul className="mt-4 space-y-2">
               {skills.map((skill) => (
                 <li
                   key={skill.name}
                   className="
-    grid
-    grid-cols-1
-    sm:grid-cols-[300px_100px_minmax(0,1fr)]
-    gap-4
-    items-start
-  "
+                      grid
+                      grid-cols-1
+                      sm:grid-cols-[300px_100px_minmax(0,1fr)]
+                      gap-4
+                      items-start
+                    "
                 >
                   {/* Skill name */}
                   <span
                     className="
-      text-gray-300
-      text-sm
-      leading-snug
-      break-words
-      pl-2
-      -ml-2
-    "
+                      text-gray-300
+                      text-lg
+                      leading-snug
+                      break-words
+                      pl-2
+                      -ml-2
+                    "
                   >
                     ▸ {skill.name}
                   </span>
 
                   {/* Segmented bars */}
-                  <div className="flex gap-[3px] justify-start sm:justify-center mt-1">
-                    {Array.from({ length: TOTAL_BARS }).map((_, index) => {
-                      const filled =
-                        index < Math.round(skill.level / (100 / TOTAL_BARS));
-                      return (
-                        <span
-                          key={index}
-                          className={`
-            h-2 w-2 rounded-sm
-            transition-all
-            ${filled ? "bg-cyan-400 shadow-[0_0_6px_#22d3ee]" : "bg-gray-700"}
-          `}
-                          title={`${skill.level}%`}
-                        />
-                      );
-                    })}
+                  <div className="flex items-center gap-2 mt-1 font-mono text-xs text-cyan-400">
+                    <span>[</span>
+
+                    <div className="flex gap-[2px]">
+                      {Array.from({ length: TOTAL_BARS }).map((_, index) => {
+                        const filled =
+                          index < Math.round(skill.level / (100 / TOTAL_BARS));
+
+                        return (
+                          <span
+                            key={index}
+                            className={`h-2 w-2 transition-all ${
+                              filled
+                                ? "bg-cyan-400 shadow-[0_0_6px_#22d3ee]"
+                                : "bg-gray-700"
+                            }`}
+                          />
+                        );
+                      })}
+                    </div>
+
+                    <span>]</span>
+                    <span className="ml-1">{skill.level}%</span>
                   </div>
 
                   {/* Evidence */}
                   <span
                     className="
-      text-gray-400
-      text-xs
-      leading-relaxed
-      break-words
-      max-w-2xl
-    "
+                      text-gray-400
+                      text-sm
+                      leading-relaxed
+                      break-words
+                      max-w-2xl
+                      ml-2
+                    "
                   >
                     {skill.evidence}
                   </span>
@@ -444,33 +515,59 @@ export default function Portfolio() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
-              <Code2 className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-cyan-400">
-                Frontend
-              </h3>
-              <p className="text-gray-400 text-xs md:text-sm">
-                React, Next.js, TypeScript, Tailwind CSS
-              </p>
-            </div>
-            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
-              <Cpu className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-blue-400 group-hover:scale-110 transition-transform" />
-              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-blue-400">
-                Backend
-              </h3>
-              <p className="text-gray-400 text-xs md:text-sm">
-                Node.js, Express, RESTful APIs, GraphQL
-              </p>
-            </div>
-            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group sm:col-span-2 lg:col-span-1">
-              <Zap className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-cyan-400">
-                DevOps
-              </h3>
-              <p className="text-gray-400 text-xs md:text-sm">
-                Docker, CI/CD, AWS, Git
-              </p>
-            </div>
+            {capabilities.map((cap, index) => {
+              const Icon = cap.icon;
+              const TOTAL_BARS = 10;
+
+              return (
+                <div
+                  key={index}
+                  className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-all group relative overflow-hidden"
+                >
+                  {/* Terminal header */}
+                  <div className="flex items-center gap-2 mb-3 text-xs font-mono text-gray-400">
+                    <span className="text-green-400">●</span>
+                    <span className="text-yellow-400">●</span>
+                    <span className="text-red-400">●</span>
+                    <span className="ml-2">capability.scan</span>
+                  </div>
+
+                  {/* Icon */}
+                  <Icon className="w-10 md:w-12 h-10 md:h-12 mb-3 text-cyan-400 group-hover:scale-110 transition-transform" />
+
+                  {/* Title */}
+                  <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-cyan-400">
+                    {cap.title}
+                  </h3>
+
+                  {/* Terminal Progress Bar */}
+                  <div className="flex items-center gap-2 mb-3 font-mono text-xs text-cyan-400">
+                    <span>[</span>
+                    <div className="flex gap-[2px]">
+                      {Array.from({ length: TOTAL_BARS }).map((_, i) => {
+                        const filled =
+                          i < Math.round(cap.level / (100 / TOTAL_BARS));
+                        return (
+                          <span
+                            key={i}
+                            className={`h-2 w-2 ${
+                              filled ? "bg-cyan-400" : "bg-gray-700"
+                            }`}
+                          />
+                        );
+                      })}
+                    </div>
+                    <span>]</span>
+                    <span className="ml-1">{cap.level}%</span>
+                  </div>
+
+                  {/* Stack */}
+                  <p className="text-gray-400 text-xs md:text-sm font-mono">
+                    {cap.stack}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -486,21 +583,66 @@ export default function Portfolio() {
             Projects
             <span className="text-cyan-400">{" />"}</span>
           </h2>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
                 className="bg-gray-900 rounded-lg p-4 md:p-6 border-2 border-cyan-400/20 hover:border-cyan-400 transition-all group relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-20 h-20 bg-cyan-400/10 rounded-bl-full group-hover:scale-150 transition-transform"></div>
-                <div className="absolute -top-2 -right-2 w-4 h-4 border-2 border-cyan-400 rounded-sm"></div>
+                {/* Decorative elements */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-cyan-400/10 rounded-bl-full group-hover:scale-150 transition-transform" />
+                <div className="absolute -top-2 -right-2 w-4 h-4 border-2 border-cyan-400 rounded-sm" />
+
+                {/* Title */}
                 <h3 className="text-lg md:text-2xl font-bold mb-2 md:mb-3 font-mono text-cyan-400 relative z-10 line-clamp-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 mb-3 md:mb-4 leading-relaxed text-xs sm:text-sm relative z-10">
+
+                {/* Description */}
+                <p className="text-gray-400 mb-4 leading-relaxed text-xs sm:text-sm relative z-10">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-3 md:mb-4 relative z-10">
+
+                {/* 🧬 Project DNA */}
+                <div className="space-y-2 mb-4 relative z-10">
+                  {project.dna.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <span className="w-20 text-xs text-gray-400 font-mono">
+                        {item.label}
+                      </span>
+
+                      <div className="flex-1 h-1.5 bg-gray-800 rounded overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-700"
+                          style={{ width: `${item.value}%` }}
+                        />
+                      </div>
+
+                      <span className="text-xs text-cyan-400 font-mono">
+                        {item.value}%
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* 📈 Impact Metrics */}
+                {project.impact && (
+                  <div className="mb-4 space-y-1 relative z-10">
+                    {project.impact.map((point, i) => (
+                      <p
+                        key={i}
+                        className="text-xs text-green-400 font-mono flex items-start gap-2"
+                      >
+                        <span>▲</span>
+                        <span>{point}</span>
+                      </p>
+                    ))}
+                  </div>
+                )}
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4 relative z-10">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
@@ -510,13 +652,16 @@ export default function Portfolio() {
                     </span>
                   ))}
                 </div>
-                {project.link !== "" && (
+
+                {/* CTA */}
+                {project.link && (
                   <a
                     href={project.link}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-cyan-400 hover:text-blue-400 transition-colors font-mono text-xs sm:text-sm relative z-10"
                   >
-                    view_platform(){" "}
+                    view_platform()
                     <ExternalLink className="w-3 sm:w-4 h-3 sm:h-4" />
                   </a>
                 )}
