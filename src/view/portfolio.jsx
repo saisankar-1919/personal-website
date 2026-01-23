@@ -235,14 +235,14 @@ export default function Portfolio() {
             {[
               "home",
               "about",
-              "skills",
-              "highlighted builds",
-              "get in touch",
+              "focusAreas",
+              "highlightedBuilds",
+              "getInTouch",
             ].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`capitalize hover:text-cyan-400 transition-colors relative whitespace-nowrap ${
+                className={` hover:text-cyan-400 transition-colors relative whitespace-nowrap ${
                   activeSection === section ? "text-cyan-400" : ""
                 }`}
               >
@@ -274,14 +274,14 @@ export default function Portfolio() {
               {[
                 "home",
                 "about",
-                "skills",
-                "highlighted builds",
-                "get in touch",
+                "focusAreas",
+                "highlightedBuilds",
+                "getInTouch",
               ].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`block w-full text-left px-4 py-2 rounded font-mono text-sm capitalize transition-colors ${
+                  className={`block w-full text-left px-4 py-2 rounded font-mono text-sm transition-colors ${
                     activeSection === section
                       ? "bg-cyan-400/20 text-cyan-400"
                       : "text-gray-300 hover:bg-cyan-400/10 hover:text-cyan-400"
@@ -321,13 +321,13 @@ export default function Portfolio() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <button
-                onClick={() => scrollToSection("highlighted builds")}
+                onClick={() => scrollToSection("highlightedBuilds")}
                 className="px-6 sm:px-8 py-2 sm:py-3 bg-cyan-400 text-gray-950 rounded font-semibold font-mono text-sm sm:text-base hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/50 transition-all active:scale-95"
               >
                 view_projects()
               </button>
               <button
-                onClick={() => scrollToSection("get in touch")}
+                onClick={() => scrollToSection("getInTouch")}
                 className="px-6 sm:px-8 py-2 sm:py-3 border-2 border-cyan-400 text-cyan-400 rounded font-semibold font-mono text-sm sm:text-base hover:bg-cyan-400/10 transition-all active:scale-95"
               >
                 get_in_touch()
@@ -440,13 +440,13 @@ export default function Portfolio() {
 
       {/* Skills Section */}
       <section
-        id="skills"
+        id="focusAreas"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-6xl w-full relative z-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 font-mono">
             <span className="text-cyan-400">{"<"}</span>
-            Skills
+            Focus Areas
             <span className="text-cyan-400">{" />"}</span>
           </h2>
           <div className="bg-black border border-gray-700 rounded-lg p-4 font-mono text-sm mb-12">
@@ -577,12 +577,42 @@ export default function Portfolio() {
               );
             })}
           </div>
+
+          {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
+              <Code2 className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-cyan-400">
+                Frontend
+              </h3>
+              <p className="text-gray-400 text-xs md:text-sm">
+                React, Next.js, TypeScript, Tailwind CSS
+              </p>
+            </div>
+            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group">
+              <Cpu className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-blue-400 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-blue-400">
+                Backend
+              </h3>
+              <p className="text-gray-400 text-xs md:text-sm">
+                Node.js, Express, RESTful APIs, GraphQL
+              </p>
+            </div>
+            <div className="p-4 md:p-6 bg-gray-900 rounded-lg border-2 border-cyan-400/20 hover:border-cyan-400 transition-colors group sm:col-span-2 lg:col-span-1">
+              <Zap className="w-10 md:w-12 h-10 md:h-12 mb-3 md:mb-4 text-cyan-400 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg md:text-xl font-bold mb-2 font-mono text-cyan-400">
+                DevOps
+              </h3>
+              <p className="text-gray-400 text-xs md:text-sm">
+                Docker, CI/CD, AWS, Git
+              </p>
+            </div>
+          </div> */}
         </div>
       </section>
 
       {/* Projects Section */}
       <section
-        id="highlighted builds"
+        id="highlightedBuilds"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-6xl w-full relative z-10">
@@ -681,7 +711,7 @@ export default function Portfolio() {
 
       {/* Contact Section */}
       <section
-        id="get in touch"
+        id="getInTouch"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
         <div className="max-w-6xl w-full text-center relative z-10">
