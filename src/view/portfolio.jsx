@@ -13,6 +13,7 @@ import {
   X,
 } from "lucide-react";
 import personalPhoto from "../assets/personal_photo.png";
+import GetInTouch from "../component/ContactSection";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
@@ -191,6 +192,138 @@ export default function Portfolio() {
     },
   ];
 
+  const philosophy = [
+    {
+      title: "Build for humans first",
+      description:
+        "Readable, predictable code enables faster onboarding, safer changes, and long-term scalability.",
+    },
+    {
+      title: "Think in systems, not features",
+      description:
+        "I design with data flow, ownership, and failure scenarios in mind before writing UI or APIs.",
+    },
+    {
+      title: "Optimize intentionally",
+      description:
+        "Performance work is driven by metrics and real bottlenecks, not premature assumptions.",
+    },
+    {
+      title: "Own outcomes, not just tasks",
+      description:
+        "I take responsibility from requirement clarity to production behavior and post-release fixes.",
+    },
+    {
+      title: "Small, safe iterations win",
+      description:
+        "Frequent, well-scoped releases reduce risk and create faster feedback loops.",
+    },
+    {
+      title: "Communication is part of engineering",
+      description:
+        "Clear explanations build trust with teammates, stakeholders, and clients.",
+    },
+  ];
+
+  const learningNow = [
+    {
+      title: "React performance & rendering internals",
+      description:
+        "Improving responsiveness by understanding reconciliation, memoization, and render boundaries.",
+    },
+    {
+      title: "Frontend-heavy system design",
+      description:
+        "Designing scalable UI architectures with clear data ownership and predictable state flows.",
+    },
+    {
+      title: "Production observability & debugging",
+      description:
+        "Using logs, metrics, and traces to identify real bottlenecks and failure patterns.",
+    },
+  ];
+
+  const appliedLearning = [
+    "Reduced unnecessary re-renders by restructuring component boundaries",
+    "Improved API contracts to simplify frontend state management",
+    "Used metrics instead of assumptions to guide performance fixes",
+  ];
+
+  const radar = [
+    "Design systems that scale across teams",
+    "AI-assisted developer productivity tools",
+    "Technology applied to sustainability & agri-tech",
+  ];
+
+  const notes = [
+    "Performance issues are usually architectural, not micro-optimizations.",
+    "Most bugs are state problems in disguise.",
+    "Good abstractions reduce mental load more than lines of code.",
+  ];
+
+  const experiences = [
+    {
+      role: "Software Engineer",
+      company: "LabGlo Technologies",
+      duration: "2023 - Present",
+      type: "Full-time",
+      highlights: [
+        "Built scalable frontend using React & TypeScript",
+        "Improved performance of key modules",
+        "Collaborated with backend for API optimization",
+        "Optimized performance across UI rendering and API responses",
+      ],
+      stack: ["React", "TypeScript", "Node.js", "Next.js"],
+      impact: [
+        "⚡ Improved load time by 30%",
+        "📈 Increased engagement in key flows",
+      ],
+    },
+    {
+      role: "Full stack developer",
+      company: "Lifology",
+      duration: "2022 - 2023",
+      type: "Internship",
+      highlights: [
+        "Built and maintained end-to-end features across frontend and backend",
+        "Designed and implemented APIs for seamless data flow",
+        "Developed scalable gamified UI",
+        "Optimized performance across UI rendering and API responses",
+      ],
+      stack: [
+        "JavaScript",
+        "Typescript",
+        "Next.js",
+        "Node.js",
+        "PostgreSQL",
+        "GraphQL",
+      ],
+    },
+    {
+      role: "Software Developer Intern",
+      company: "Brototype",
+      duration: "2022 - 2023",
+      type: "Internship",
+      highlights: [
+        "Worked on fullstack projects",
+        "Learned root level concepts and there applications",
+        "Learned production-level coding practices",
+      ],
+      stack: ["JavaScript", "React.js", "Node.js", "MongoDB"],
+    },
+    {
+      role: "Web Developer Trainee",
+      company: "Terveys",
+      duration: "2022 - 2023",
+      type: "Internship",
+      highlights: [
+        "Worked on health care application development",
+        "Learned basic level frontend rendering and applications",
+      ],
+      stack: ["HTML", "CSS", "Bootstrap", "React js"],
+    },
+  ];
+
   const TOTAL_BARS = 5;
 
   const scrollToSection = (id) => {
@@ -236,6 +369,9 @@ export default function Portfolio() {
               "home",
               "about",
               "focusAreas",
+              "mindset",
+              "learning",
+              "writing",
               "highlightedBuilds",
               "getInTouch",
             ].map((section) => (
@@ -275,6 +411,9 @@ export default function Portfolio() {
                 "home",
                 "about",
                 "focusAreas",
+                "mindset",
+                "learning",
+                "writing",
                 "highlightedBuilds",
                 "getInTouch",
               ].map((section) => (
@@ -409,7 +548,7 @@ export default function Portfolio() {
                 = <span className="text-blue-400">{"{"}</span>
               </p>
               <p className="pl-4 sm:pl-8 leading-relaxed">
-                As a Senior Full Stack Developer with over 4 years of
+                As a Senior Full Stack Developer with over 5 years of
                 experience, I specialize in building robust, scalable web
                 applications that solve real-world problems. My expertise spans
                 the entire development lifecycle, from architecting solutions to
@@ -610,6 +749,90 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/*Experience section*/}
+      {/* Experience Section */}
+      <section
+        id="experience"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
+      >
+        <div className="max-w-6xl w-full relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 font-mono">
+            <span className="text-cyan-400">{"<"}</span>
+            Experience
+            <span className="text-cyan-400">{" />"}</span>
+          </h2>
+
+          <div className="bg-gray-900 border border-gray-700 rounded-lg p-4 md:p-6 font-mono text-sm">
+            {/* Terminal header */}
+            <div className="flex items-center gap-2 mb-4 text-xs text-gray-400">
+              <span className="text-green-400">●</span>
+              <span className="text-yellow-400">●</span>
+              <span className="text-red-400">●</span>
+              <span className="ml-2">experience.log</span>
+            </div>
+
+            <div className="space-y-8">
+              {experiences.map((exp, index) => (
+                <div
+                  key={index}
+                  className="border-l-2 border-cyan-400/30 pl-4 relative"
+                >
+                  {/* Dot indicator */}
+                  <div className="absolute -left-[7px] top-2 w-3 h-3 bg-cyan-400 rounded-full" />
+
+                  {/* Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                    <h3 className="text-lg md:text-xl text-cyan-400 font-bold">
+                      {exp.role} @ {exp.company}
+                    </h3>
+                    <span className="text-xs text-gray-400">
+                      {exp.duration} • {exp.type}
+                    </span>
+                  </div>
+
+                  {/* Highlights */}
+                  <ul className="space-y-1 mb-3 text-gray-300 text-sm">
+                    {exp.highlights.map((point, i) => (
+                      <li key={i} className="flex gap-2">
+                        <span className="text-cyan-400">▸</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Impact */}
+                  {exp.impact && (
+                    <div className="mb-3 space-y-1">
+                      {exp.impact.map((item, i) => (
+                        <p
+                          key={i}
+                          className="text-xs text-green-400 flex gap-2"
+                        >
+                          <span>▲</span>
+                          <span>{item}</span>
+                        </p>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Tech stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {exp.stack.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 bg-cyan-400/10 border border-cyan-400/30 rounded text-xs text-cyan-400"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Projects Section */}
       <section
         id="highlightedBuilds"
@@ -709,8 +932,251 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Philosophy section */}
       <section
+        id="mindset"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
+      >
+        <div className="max-w-6xl w-full relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 font-mono">
+            <span className="text-cyan-400">{"<"}</span>
+            Engineering Mindset
+            <span className="text-cyan-400">{" />"}</span>
+          </h2>
+
+          <div className="bg-gray-900 border-2 border-cyan-400/20 rounded-lg overflow-hidden">
+            {/* Terminal Header */}
+            <div className="h-8 bg-gray-800 border-b border-cyan-400/20 flex items-center px-4 gap-2">
+              <span className="w-3 h-3 bg-red-500 rounded-full" />
+              <span className="w-3 h-3 bg-yellow-500 rounded-full" />
+              <span className="w-3 h-3 bg-green-500 rounded-full" />
+              <span className="ml-3 text-xs font-mono text-gray-400">
+                mindset.principles
+              </span>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 md:p-8 space-y-6">
+              {philosophy.map((item, i) => (
+                <div key={i} className="grid md:grid-cols-[400px_1fr] gap-4">
+                  <p className="font-mono text-cyan-400 text-lg">
+                    ▸ {item.title}
+                  </p>
+                  <p className="text-gray-300 text-md leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Learning & growth section */}
+      <section
+        id="learning"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
+      >
+        <div className="max-w-6xl w-full relative z-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 font-mono">
+            <span className="text-cyan-400">{"<"}</span>
+            Learning & Growth
+            <span className="text-cyan-400">{" />"}</span>
+          </h2>
+
+          <p className="text-gray-400 text-sm mb-8 max-w-2xl">
+            I focus on learning that improves system quality, delivery
+            confidence, and long-term maintainability.
+          </p>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+            {/* Currently Learning */}
+            <div className="bg-gray-900 border-2 border-cyan-400/20 rounded-lg p-6">
+              <p className="font-mono text-cyan-400 mb-4">
+                $ currently_learning
+              </p>
+              <div className="space-y-4">
+                {learningNow.map((item, i) => (
+                  <div key={i}>
+                    <p className="text-lg font-mono text-gray-200">
+                      ▸ {item.title}
+                    </p>
+                    <p className="text-sm text-gray-400 leading-relaxed mt-1">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Applied Learnings */}
+            <div className="bg-gray-900 border-2 border-green-400/20 rounded-lg p-6">
+              <p className="font-mono text-green-400 mb-4">
+                $ applied_in_production
+              </p>
+              <ul className="space-y-3 text-lg text-gray-300">
+                {appliedLearning.map((item, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="text-green-400">▸</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* On the Radar */}
+            <div className="bg-gray-900 border-2 border-blue-400/20 rounded-lg p-6">
+              <p className="font-mono text-blue-400 mb-4">$ on_my_radar</p>
+              <ul className="space-y-3 text-lg text-gray-300">
+                {radar.map((item, i) => (
+                  <li key={i}>▸ {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Writing/sharing section */}
+      <section
+        id="writing"
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
+      >
+        <div className="max-w-6xl w-full relative z-10">
+          {/* Section Title */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 font-mono">
+            <span className="text-cyan-400">{"<"}</span>
+            Writing & Sharing
+            <span className="text-cyan-400">{" />"}</span>
+          </h2>
+
+          <p className="text-gray-400 text-sm mb-10 max-w-2xl">
+            A collection of articles, notes, and ongoing thoughts that reflect
+            how I approach engineering, architecture, and emerging technologies.
+          </p>
+
+          {/* Terminal Container */}
+          <div className="bg-gray-900 border-2 border-cyan-400/20 rounded-lg overflow-hidden">
+            {/* Terminal Header */}
+            <div className="h-8 bg-gray-800 border-b border-cyan-400/20 flex items-center px-4 gap-2">
+              <span className="w-3 h-3 bg-red-500 rounded-full" />
+              <span className="w-3 h-3 bg-yellow-500 rounded-full" />
+              <span className="w-3 h-3 bg-green-500 rounded-full" />
+              <span className="ml-3 text-xs font-mono text-gray-400">
+                knowledge.log
+              </span>
+            </div>
+
+            <div className="p-6 md:p-8 space-y-10 font-mono text-lg">
+              {/* ================= FEATURED ARTICLES ================= */}
+              <div>
+                <p className="text-cyan-400 mb-4">$ FEATURED_ARTICLES</p>
+
+                <div className="space-y-4">
+                  {[
+                    {
+                      title: "A Web Developer’s Entry into AI",
+                      desc: "A practical introduction to AI concepts from a web developer’s perspective.",
+                      link: "https://medium.com/@saisankarattingal/a-web-developers-entry-into-ai-concepts-i-understand-a061e56cbd38",
+                      tags: ["AI", "Foundations"],
+                    },
+                    {
+                      title: "Choosing the Right ORM",
+                      desc: "Architectural trade-offs in ORM selection and database design.",
+                      link: "https://medium.com/@saisankarattingal/choosing-the-right-orm-a-guide-to-effective-database-management-fbded27c1512",
+                      tags: ["Architecture", "Databases"],
+                    },
+                    {
+                      title: "Best Practices in TypeScript",
+                      desc: "Guidelines for writing safe, scalable TypeScript in real projects.",
+                      link: "https://medium.com/@saisankarattingal/best-practices-in-typescript-a-guide-for-developers-4c2805e4af83",
+                      tags: ["TypeScript", "Best Practices"],
+                    },
+                    {
+                      title: "Future of Agriculture: Hydroponic Farming",
+                      desc: "Exploring the intersection of technology and sustainable agriculture.",
+                      link: "https://medium.com/@saisankarattingal/exploring-the-future-of-agriculture-hydroponic-farming-4e12bd4bcaaf",
+                      tags: ["Sustainability", "AgriTech"],
+                    },
+                  ].map((article, i) => (
+                    <a
+                      key={i}
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block border border-gray-700 rounded-md p-4 hover:border-cyan-400 transition-all"
+                    >
+                      <div className="flex justify-between items-start gap-4">
+                        <div>
+                          <p className="text-cyan-400 text-lg">
+                            {article.title}
+                          </p>
+                          <p className="text-gray-400 text-md mt-1 leading-relaxed">
+                            {article.desc}
+                          </p>
+                        </div>
+                        <span className="text-cyan-400 text-xl">↗</span>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {article.tags.map((tag, t) => (
+                          <span
+                            key={t}
+                            className="px-2 py-0.5 border border-cyan-400/30 text-cyan-400 text-sm rounded"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* ================= SIGNALS / NOTES ================= */}
+              <div>
+                <p className="text-green-400 mb-4">$ SIGNALS_AND_NOTES</p>
+
+                <ul className="space-y-3 text-gray-300">
+                  <li>
+                    ▸ AI becomes useful only when grounded in real product
+                    problems
+                  </li>
+                  <li>
+                    ▸ ORM decisions shape performance more than query tuning
+                  </li>
+                  <li>
+                    ▸ Type safety is a productivity tool, not just a compiler
+                    feature
+                  </li>
+                  <li>
+                    ▸ Sustainability problems need systems thinking, not
+                    shortcuts
+                  </li>
+                </ul>
+              </div>
+
+              {/* ================= IDEAS IN PROGRESS ================= */}
+              <div>
+                <p className="text-blue-400 mb-4">$ IDEAS_IN_PROGRESS</p>
+
+                <ul className="space-y-2 text-gray-400">
+                  <li>
+                    ▸ Observability as a core feature, not an afterthought
+                  </li>
+                  <li>
+                    ▸ Frontend architecture patterns for long-lived products
+                  </li>
+                  <li>▸ Applying software thinking to agri-tech platforms</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      {/* <section
         id="getInTouch"
         className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 md:py-20 relative"
       >
@@ -762,7 +1228,9 @@ export default function Portfolio() {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <GetInTouch />
 
       {/* Footer */}
       <footer className="border-t-2 border-cyan-400/20 py-6 md:py-8 text-center text-gray-400 relative z-10 px-4">
